@@ -1,460 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>A+ | Gamified Productivity</title>
-    
+
     <!-- FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
     <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- LOGIN SCREEN -->
     <div id="login-screen">
-        <div class="login-bg-shape login-bg-shape-1"></div>
-        <div class="login-bg-shape login-bg-shape-2"></div>
-        <div class="login-card text-center">
-            <div class="flex justify-center mb-6">
-                <div style="background: var(--navy); padding: 1rem; border-radius: 1rem; display: inline-flex; box-shadow: 0 10px 15px -3px rgba(1, 73, 118, 0.3);">
-                    <i data-lucide="gamepad-2" style="width: 48px; height: 48px; color: var(--gold);" class="animate-bounce-short"></i>
-                </div>
-            </div>
-            <h1 class="font-black text-navy" style="font-size: 2rem; margin-bottom: 0.5rem;">A+ Productivity</h1>
-            <p class="text-muted" style="font-weight: 500; margin-bottom: 2rem;">Gamify your workflow.</p>
-            <form id="login-form" class="flex flex-col gap-4">
-                <input type="email" required placeholder="hero@guild.com" class="form-input">
-                <input type="password" required placeholder="••••••••" class="form-input">
-                <button type="submit" class="btn btn-primary w-full" style="padding: 1rem; font-size: 1.1rem; margin-top: 0.5rem;">Start Adventure</button>
-                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">Test Mode: Enter any email & password</p>
-            </form>
+      <div class="login-bg-shape login-bg-shape-1"></div>
+      <div class="login-bg-shape login-bg-shape-2"></div>
+      <div class="login-card text-center">
+        <div class="flex justify-center mb-6">
+          <div
+            style="
+              background: var(--navy);
+              padding: 1rem;
+              border-radius: 1rem;
+              display: inline-flex;
+              box-shadow: 0 10px 15px -3px rgba(1, 73, 118, 0.3);
+            "
+          >
+            <i
+              data-lucide="gamepad-2"
+              style="width: 48px; height: 48px; color: var(--gold)"
+              class="animate-bounce-short"
+            ></i>
+          </div>
         </div>
+        <h1
+          class="font-black text-navy"
+          style="font-size: 2rem; margin-bottom: 0.5rem"
+        >
+          A+ Productivity
+        </h1>
+        <p class="text-muted" style="font-weight: 500; margin-bottom: 2rem">
+          Gamify your workflow.
+        </p>
+        <form id="login-form" class="flex flex-col gap-4">
+          <input
+            type="email"
+            required
+            placeholder="hero@guild.com"
+            class="form-input"
+          />
+          <input
+            type="password"
+            required
+            placeholder="••••••••"
+            class="form-input"
+          />
+          <button
+            type="submit"
+            class="btn btn-primary w-full"
+            style="padding: 1rem; font-size: 1.1rem; margin-top: 0.5rem"
+          >
+            Start Adventure
+          </button>
+          <p
+            style="
+              font-size: 0.75rem;
+              color: var(--text-muted);
+              margin-top: 1rem;
+            "
+          >
+            Test Mode: Enter any email & password
+          </p>
+        </form>
+      </div>
     </div>
 
     <!-- MAIN APP -->
     <div id="main-app" class="w-full h-full flex hidden">
-        <div id="mobile-overlay" class="mobile-overlay" onclick="toggleSidebar(false)"></div>
-        
-        <aside id="sidebar" class="sidebar">
-            <div class="logo-area">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="gamepad-2" class="animate-float" style="color: var(--gold);"></i>
-                    <span style="font-size: 1.5rem; font-weight: 900;">A<span class="text-gold">+</span></span>
-                </div>
-            </div>
-            <nav class="nav-links">
-                <div class="nav-category" style="margin: 1.5rem 0 0.5rem 0.5rem;">Guild Menu</div>
-                <button class="nav-btn active" onclick="switchView('quests')" id="nav-quests"><i data-lucide="sword"></i> Quest Board</button>
-                <button class="nav-btn" onclick="switchView('leaderboard')" id="nav-leaderboard"><i data-lucide="trophy"></i> Leaderboard</button>
-                <button class="nav-btn" onclick="switchView('profile')" id="nav-profile"><i data-lucide="user"></i> Profile</button>
-                <button class="nav-btn" onclick="switchView('achievements')" id="nav-achievements"><i data-lucide="award"></i> Achievements</button>
-                <button class="nav-btn" onclick="switchView('feedback')" id="nav-feedback"><i data-lucide="message-square"></i> Feedback</button>
-                <button class="nav-btn" onclick="switchView('howto')" id="nav-howto"><i data-lucide="book-open"></i> How to Play</button>
-                <div class="nav-category" style="margin: 1.5rem 0 0.5rem 0.5rem;">Modules</div>
-                <button class="nav-btn" onclick="switchView('pomodoro')" id="nav-pomodoro"><i data-lucide="timer"></i> Pomodoro</button>
-            </nav>
-            <div class="sidebar-footer" onclick="switchView('profile')">
-                <div class="flex items-center gap-2 mb-2">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" class="sidebar-avatar">
-                    <div>
-                        <div style="font-weight: 700; font-size: 0.9rem;">Player One</div>
-                        <div style="font-size: 0.75rem; color: var(--gold); font-weight: 700;">Lvl <span id="sidebar-level">1</span></div>
-                    </div>
-                </div>
-                <div class="xp-track"><div id="sidebar-xp-bar" class="xp-fill"></div></div>
-            </div>
-        </aside>
+      <div
+        id="mobile-overlay"
+        class="mobile-overlay"
+        onclick="toggleSidebar(false)"
+      ></div>
 
-        <main class="main-content">
-            <header>
-                <div class="flex items-center gap-4">
-                    <button id="mobile-menu-btn" class="btn btn-secondary" style="display: none; padding: 0.5rem;" onclick="toggleSidebar()"><i data-lucide="menu"></i></button>
-                    <h1 id="page-title" class="page-title">Quest Board</h1>
-                </div>
-                <button id="new-quest-btn" class="btn btn-primary" onclick="Quests.openModal()"><i data-lucide="plus"></i> <span class="hidden md:inline">New Quest</span></button>
-            </header>
-            <div id="app-view" class="view-section"></div>
-        </main>
+      <aside id="sidebar" class="sidebar">
+        <div class="logo-area">
+          <div class="flex items-center gap-2">
+            <i
+              data-lucide="gamepad-2"
+              class="animate-float"
+              style="color: var(--gold)"
+            ></i>
+            <span style="font-size: 1.5rem; font-weight: 900"
+              >A<span class="text-gold">+</span></span
+            >
+          </div>
+        </div>
+        <nav class="nav-links">
+          <div class="nav-category" style="margin: 1.5rem 0 0.5rem 0.5rem">
+            Guild Menu
+          </div>
+          <button
+            class="nav-btn active"
+            onclick="switchView('quests')"
+            id="nav-quests"
+          >
+            <i data-lucide="sword"></i> Quest Board
+          </button>
+          <button
+            class="nav-btn"
+            onclick="switchView('leaderboard')"
+            id="nav-leaderboard"
+          >
+            <i data-lucide="trophy"></i> Leaderboard
+          </button>
+          <button
+            class="nav-btn"
+            onclick="switchView('profile')"
+            id="nav-profile"
+          >
+            <i data-lucide="user"></i> Profile
+          </button>
+          <button
+            class="nav-btn"
+            onclick="switchView('achievements')"
+            id="nav-achievements"
+          >
+            <i data-lucide="award"></i> Achievements
+          </button>
+          <button
+            class="nav-btn"
+            onclick="switchView('feedback')"
+            id="nav-feedback"
+          >
+            <i data-lucide="message-square"></i> Feedback
+          </button>
+          <button class="nav-btn" onclick="switchView('howto')" id="nav-howto">
+            <i data-lucide="book-open"></i> How to Play
+          </button>
+          <div class="nav-category" style="margin: 1.5rem 0 0.5rem 0.5rem">
+            Modules
+          </div>
+          <button
+            class="nav-btn"
+            onclick="switchView('pomodoro')"
+            id="nav-pomodoro"
+          >
+            <i data-lucide="timer"></i> Pomodoro
+          </button>
+        </nav>
+        <div class="sidebar-footer" onclick="switchView('profile')">
+          <div class="flex items-center gap-2 mb-2">
+            <img
+              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+              class="sidebar-avatar"
+            />
+            <div>
+              <div style="font-weight: 700; font-size: 0.9rem">Player One</div>
+              <div
+                style="font-size: 0.75rem; color: var(--gold); font-weight: 700"
+              >
+                Lvl <span id="sidebar-level">1</span>
+              </div>
+            </div>
+          </div>
+          <div class="xp-track">
+            <div id="sidebar-xp-bar" class="xp-fill"></div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header>
+          <div class="flex items-center gap-4">
+            <button
+              id="mobile-menu-btn"
+              class="btn btn-secondary"
+              style="display: none; padding: 0.5rem"
+              onclick="toggleSidebar()"
+            >
+              <i data-lucide="menu"></i>
+            </button>
+            <h1 id="page-title" class="page-title">Quest Board</h1>
+          </div>
+          <button
+            id="new-quest-btn"
+            class="btn btn-primary"
+            onclick="Quests.openModal()"
+          >
+            <i data-lucide="plus"></i>
+            <span class="hidden md:inline">New Quest</span>
+          </button>
+        </header>
+        <div id="app-view" class="view-section"></div>
+      </main>
     </div>
 
     <!-- QUEST MODAL -->
     <div id="quest-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="font-black flex items-center gap-2"><i data-lucide="scroll" class="text-gold"></i> New Quest</h3>
-                <button onclick="Quests.closeModal()" class="cursor-pointer text-white" style="background:none; border:none;"><i data-lucide="x"></i></button>
-            </div>
-            <form id="quest-form" class="modal-body">
-                <div style="margin-bottom: 1.5rem;">
-                    <label class="form-label">Quest Title</label>
-                    <input type="text" id="quest-title" required class="form-input">
-                </div>
-                <div style="margin-bottom: 1.5rem;">
-                    <label class="form-label">Difficulty</label>
-                    <select id="quest-priority" class="form-select">
-                        <option value="High">Legendary (+500 XP)</option>
-                        <option value="Medium">Rare (+250 XP)</option>
-                        <option value="Low">Common (+100 XP)</option>
-                    </select>
-                </div>
-                <div class="flex justify-between">
-                    <button type="button" onclick="Quests.closeModal()" class="btn btn-secondary">Retreat</button>
-                    <button type="submit" class="btn btn-primary">Start Quest</button>
-                </div>
-            </form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="font-black flex items-center gap-2">
+            <i data-lucide="scroll" class="text-gold"></i> New Quest
+          </h3>
+          <button
+            onclick="Quests.closeModal()"
+            class="cursor-pointer text-white"
+            style="background: none; border: none"
+          >
+            <i data-lucide="x"></i>
+          </button>
         </div>
+        <form id="quest-form" class="modal-body">
+          <div style="margin-bottom: 1.5rem">
+            <label class="form-label">Quest Title</label>
+            <input type="text" id="quest-title" required class="form-input" />
+          </div>
+          <div style="margin-bottom: 1.5rem">
+            <label class="form-label">Difficulty</label>
+            <select id="quest-priority" class="form-select">
+              <option value="High">Legendary (+500 XP)</option>
+              <option value="Medium">Rare (+250 XP)</option>
+              <option value="Low">Common (+100 XP)</option>
+            </select>
+          </div>
+          <div class="flex justify-between">
+            <button
+              type="button"
+              onclick="Quests.closeModal()"
+              class="btn btn-secondary"
+            >
+              Retreat
+            </button>
+            <button type="submit" class="btn btn-primary">Start Quest</button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <!-- ACHIEVEMENT DETAILS MODAL -->
     <div id="achievement-modal" class="modal-overlay"></div>
-
-    <script>
-        // GLOBAL STATE
-        window.State = {
-            user: { name: "Player One", title: "Product Mage", level: 5, xp: 3250, nextLevelXp: 5000 },
-            tasks: [
-                { id: 1, title: 'Revise Q3 Strategy', priority: 'High', xp: 500, status: 'todo', date: 'Oct 24' },
-                { id: 2, title: 'Fix Mobile Nav Bug', priority: 'High', xp: 500, status: 'inprogress', date: 'Oct 23' },
-                { id: 3, title: 'Update Color Palette', priority: 'Medium', xp: 250, status: 'todo', date: 'Oct 25' },
-                { id: 4, title: 'Financial Report', priority: 'Low', xp: 100, status: 'completed', date: 'Oct 20' }
-            ],
-            leaderboard: [
-                { rank: 1, name: "Player One", xp: 5250 }, { rank: 2, name: "Sarah", xp: 4850 }, { rank: 3, name: "Mike", xp: 4100 },
-                { rank: 4, name: "Anna", xp: 3900 }, { rank: 5, name: "James", xp: 2200 }
-            ]
-        };
-
-        // APP CONTROLLER
-        window.App = {
-            init: function() {
-                if(window.innerWidth < 768) { document.getElementById('mobile-menu-btn').style.display = 'inline-flex'; }
-                document.getElementById('login-form').addEventListener('submit', (e) => { e.preventDefault(); this.login(); });
-                Quests.setupDragDrop();
-                lucide.createIcons();
-            },
-            login: function() {
-                const btn = document.querySelector('#login-form button');
-                btn.innerHTML = '<i data-lucide="loader-2" class="animate-spin"></i> Loading...';
-                lucide.createIcons();
-                setTimeout(() => {
-                    document.getElementById('login-screen').classList.add('hidden');
-                    document.getElementById('main-app').classList.remove('hidden');
-                    this.updateUserUI();
-                    switchView('quests'); 
-                }, 1500);
-            },
-            updateUserUI: function() {
-                const u = window.State.user;
-                const percent = Math.min((u.xp / u.nextLevelXp) * 100, 100);
-                document.getElementById('sidebar-level').textContent = u.level;
-                document.getElementById('sidebar-xp-bar').style.width = `${percent}%`;
-            },
-            addXP: function(amount) {
-                window.State.user.xp += amount;
-                this.updateUserUI();
-                if(window.State.user.xp >= window.State.user.nextLevelXp) {
-                    window.State.user.level++;
-                    window.State.user.nextLevelXp = Math.floor(window.State.user.nextLevelXp * 1.5);
-                    alert("LEVEL UP! You are now Level " + window.State.user.level);
-                    this.updateUserUI();
-                }
-            }
-        };
-
-        // NAVIGATION
-        window.switchView = function(viewId) {
-            const container = document.getElementById('app-view');
-            const title = document.getElementById('page-title');
-            const createBtn = document.getElementById('new-quest-btn');
-            container.style.opacity = '0';
-            setTimeout(() => {
-                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-                const activeBtn = document.getElementById(`nav-${viewId}`);
-                if(activeBtn) activeBtn.classList.add('active');
-                container.innerHTML = '';
-                title.textContent = viewId.charAt(0).toUpperCase() + viewId.slice(1);
-                if(createBtn) createBtn.classList.add('hidden');
-                
-                if(viewId === 'quests') { title.textContent = "Quest Board"; if(createBtn) createBtn.classList.remove('hidden'); Quests.render(container); } 
-                else if(viewId === 'leaderboard') Leaderboard.render(container);
-                else if(viewId === 'profile') Profile.render(container);
-                else if(viewId === 'achievements') Achievements.render(container);
-                else if(viewId === 'feedback') Feedback.render(container);
-                else if(viewId === 'howto') Utils.renderHowTo(container);
-                else if(viewId === 'pomodoro') { title.textContent = "Focus Session"; Pomodoro.render(container); }
-                
-                toggleSidebar(false);
-                lucide.createIcons();
-                container.style.transition = 'opacity 0.3s ease';
-                container.style.opacity = '1';
-            }, 200);
-        };
-
-        window.toggleSidebar = function(forceOpen) {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('mobile-overlay');
-            if(forceOpen === false || sidebar.classList.contains('open')) { sidebar.classList.remove('open'); overlay.classList.remove('open'); } 
-            else { sidebar.classList.add('open'); overlay.classList.add('open'); }
-        };
-
-        // MODULES
-        window.Quests = {
-            render: function(container) {
-                container.innerHTML = `<div class="kanban-grid">${this.renderColumn('To Do','todo')}${this.renderColumn('Active','inprogress')}${this.renderColumn('Done','completed')}</div>`;
-                this.setupDragDrop();
-            },
-            renderColumn: function(title, status) {
-                const tasks = window.State.tasks.filter(t => t.status === status);
-                return `<div class="flex-col gap-4"><div class="col-header animate-entry" style="animation-delay:0.1s"><span class="font-bold text-navy">${title}</span><span class="badge badge-low">${tasks.length}</span></div><div id="${status}" class="drop-zone animate-entry" style="animation-delay:0.2s">${tasks.map((t,i)=>this.renderCard(t,i)).join('')}</div></div>`;
-            },
-            renderCard: function(t, index) {
-                let badge = t.priority === 'High' ? 'badge-high' : t.priority === 'Medium' ? 'badge-medium' : 'badge-low';
-                let actionButton = '';
-                if(t.status === 'todo') {
-                    actionButton = `<button onclick="Quests.moveTask(${t.id}, 'inprogress')" class="quest-action-btn quest-action-start"><i data-lucide="play" style="width:14px;height:14px;"></i> Start</button>`;
-                } else if(t.status === 'inprogress') {
-                    actionButton = `<button onclick="Quests.moveTask(${t.id}, 'completed')" class="quest-action-btn quest-action-done"><i data-lucide="check" style="width:14px;height:14px;"></i> Done</button>`;
-                }
-                return `<div class="task-card animate-entry" style="animation-delay:${(index*0.1)+0.2}s" draggable="true" id="task-${t.id}"><div class="flex justify-between items-center" style="margin-bottom:0.5rem;"><span class="badge ${badge}">${t.priority}</span><span style="font-size:0.75rem;" class="font-bold text-gold">${t.xp} XP</span></div><div style="font-weight:700; margin-bottom:0.5rem;" class="text-navy">${t.title}</div><div class="flex justify-between items-center" style="gap:0.5rem;"><div style="font-size:0.75rem;" class="text-muted">${t.date}</div>${actionButton}</div></div>`;
-            },
-            moveTask: function(taskId, newStatus) {
-                const taskIdx = window.State.tasks.findIndex(t => t.id === taskId);
-                if(taskIdx > -1) {
-                    const oldStatus = window.State.tasks[taskIdx].status;
-                    if(newStatus === 'completed' && oldStatus !== 'completed') {
-                        App.addXP(window.State.tasks[taskIdx].xp);
-                    }
-                    window.State.tasks[taskIdx].status = newStatus;
-                    this.render(document.getElementById('app-view'));
-                }
-            },
-            openModal: function() { document.getElementById('quest-modal').classList.add('open'); },
-            closeModal: function() { document.getElementById('quest-modal').classList.remove('open'); document.getElementById('quest-form').reset(); },
-            setupDragDrop: function() {
-                document.addEventListener('dragstart', (e) => { if(e.target.classList.contains('task-card')) { e.dataTransfer.setData("text/plain", e.target.id); e.target.classList.add('dragging'); } });
-                document.addEventListener('dragend', (e) => { if(e.target.classList.contains('task-card')) e.target.classList.remove('dragging'); });
-                document.querySelectorAll('.drop-zone').forEach(zone => {
-                    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
-                    zone.addEventListener('dragleave', e => zone.classList.remove('drag-over'));
-                    zone.addEventListener('drop', e => {
-                        e.preventDefault(); zone.classList.remove('drag-over');
-                        const id = e.dataTransfer.getData("text/plain").replace('task-', '');
-                        const taskIdx = window.State.tasks.findIndex(t => t.id == id);
-                        if(taskIdx > -1) {
-                            const currentStatus = window.State.tasks[taskIdx].status;
-                            const newStatus = zone.id;
-                            // Prevent backward movements
-                            if(currentStatus === 'inprogress' && newStatus === 'todo') return;
-                            if(currentStatus === 'completed' && (newStatus === 'todo' || newStatus === 'inprogress')) return;
-                            
-                            if(newStatus === 'completed' && currentStatus !== 'completed') { App.addXP(window.State.tasks[taskIdx].xp); }
-                            window.State.tasks[taskIdx].status = newStatus;
-                            this.render(document.getElementById('app-view'));
-                        }
-                    });
-                });
-            }
-        };
-
-        document.getElementById('quest-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const title = document.getElementById('quest-title').value;
-            const priority = document.getElementById('quest-priority').value;
-            let xp = priority === 'High' ? 500 : priority === 'Medium' ? 250 : 100;
-            window.State.tasks.unshift({ id: Date.now(), title, priority, xp, status: 'todo', date: 'Just now' });
-            Quests.closeModal();
-            Quests.render(document.getElementById('app-view'));
-        });
-
-        window.Leaderboard = {
-            render: function(container) {
-                const top3 = window.State.leaderboard.slice(0, 3);
-                const rest = window.State.leaderboard.slice(3);
-                let html = `<div style="max-width: 800px; margin: 0 auto;"><div class="podium-container animate-entry">`;
-                html += `<div class="text-center animate-entry" style="animation-delay: 0.2s"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${top3[1].name}" style="width:60px; border-radius:50%; border:3px solid #cbd5e1; background:white;"><div style="margin-top:0.5rem; font-weight:700;">${top3[1].name}</div><div style="height:80px; width:80px; background:rgba(203,213,225,0.5); margin-top:0.5rem; border-radius: 0.5rem 0.5rem 0 0;"></div></div>`;
-                html += `<div class="text-center relative animate-entry" style="animation-delay: 0.4s"><i data-lucide="crown" class="text-gold animate-bounce-short" style="position:absolute; top:-30px; left:50%; transform:translateX(-50%);"></i><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${top3[0].name}" style="width:80px; border-radius:50%; border:4px solid var(--gold); background:white;"><div style="margin-top:0.5rem; font-weight:700;">${top3[0].name}</div><div style="height:120px; width:100px; background:rgba(251,174,66,0.2); margin-top:0.5rem; border-radius: 0.5rem 0.5rem 0 0; border-top: 4px solid var(--gold);"></div></div>`;
-                html += `<div class="text-center animate-entry" style="animation-delay: 0.3s"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${top3[2].name}" style="width:60px; border-radius:50%; border:3px solid #fdba74; background:white;"><div style="margin-top:0.5rem; font-weight:700;">${top3[2].name}</div><div style="height:60px; width:80px; background:rgba(253,186,116,0.5); margin-top:0.5rem; border-radius: 0.5rem 0.5rem 0 0;"></div></div></div>`;
-                html += `<div class="leaderboard-list animate-entry" style="animation-delay: 0.5s">`;
-                rest.forEach((u, i) => { html += `<div class="leaderboard-item"><span class="text-muted font-black" style="width:30px;">#${i+4}</span><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${u.name}" style="width:40px; border-radius:50%;"><div style="flex:1; font-weight:700;">${u.name}</div><div class="font-bold text-navy">${u.xp} XP</div></div>`; });
-                html += `</div></div>`;
-                container.innerHTML = html;
-            }
-        };
-
-        window.Profile = {
-            render: function(container) {
-                const u = window.State.user;
-                const percent = Math.min((u.xp / u.nextLevelXp) * 100, 100);
-                container.innerHTML = `<div style="max-width: 800px; margin: 0 auto;"><div class="profile-hero animate-entry"><div class="profile-deco" style="position: absolute; top: -20px; right: -20px; width: 150px; height: 150px; background: rgba(251, 174, 66, 0.1); border-radius: 50%; filter: blur(40px);"></div><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${u.name}" style="width:120px; height:120px; border-radius:50%; background:#f1f5f9; position: relative; z-index: 10;"><div style="flex:1; position: relative; z-index: 10;"><h2 style="font-size:1.5rem;" class="font-black text-navy">${u.name}</h2><p class="text-muted font-bold" style="margin-bottom:1rem;">${u.title}</p><div style="background:#f1f5f9; height:12px; border-radius:6px; overflow:hidden;"><div style="width:${percent}%; height:100%; background:linear-gradient(90deg, var(--gold), #fcd34d); transition: width 1s ease;"></div></div><div class="flex justify-between text-muted font-bold" style="font-size:0.75rem; margin-top:0.5rem;"><span>Current Progress</span><span>${u.xp} / ${u.nextLevelXp} XP</span></div></div></div><div class="profile-stats-grid">${this.stat('globe', 'Global Rank', '#1', 0.1)}${this.stat('check-circle-2', 'Quests Done', '42', 0.2)}${this.stat('bug', 'Bugs Squashed', '128', 0.3)}${this.stat('flame', 'Day Streak', '12', 0.4)}</div></div>`;
-            },
-            stat: function(icon, label, value, delay) {
-                return `<div class="stat-card animate-entry" style="animation-delay: ${delay}s;"><div class="text-navy" style="margin-bottom:0.5rem;"><i data-lucide="${icon}"></i></div><div class="text-navy font-black" style="font-size:1.5rem;">${value}</div><div class="text-muted font-bold" style="font-size:0.75rem; text-transform:uppercase;">${label}</div></div>`;
-            }
-        };
-
-        window.Achievements = {
-            data: [
-                { title: 'Early Bird', desc: 'Complete a task before 8am', icon: 'zap', unlocked: true },
-                { title: 'Warrior', desc: 'Complete 10 high priority tasks', icon: 'sword', unlocked: true },
-                { title: 'Rich', desc: 'Earn 10,000 XP', icon: 'gem', unlocked: false },
-                { title: 'Kingpin', desc: 'Reach level 10', icon: 'crown', unlocked: false },
-                { title: 'Locked in', desc: 'Get 5000 XP', icon: 'gem', unlocked: true},
-                { title: 'Getting Started', desc: 'Get 1000 XP', icon: 'gem', unlocked: true},
-                { title: 'Bro has no life', desc: 'Get 10,000 XP', icon: 'gem', unlocked: true},
-                { title: 'Glued to the TERMINAL', desc: 'Get 20,000 XP', icon: 'gem', unlocked: true},
-
-
-            ],
-            render: function(container) {
-                let html = `<div class="achievement-grid">`;
-                this.data.forEach((b, i) => {
-                    const style = b.unlocked ? "border:2px solid var(--gold); background:white; cursor:pointer;" : "border:2px solid var(--border); background:#f1f5f9; opacity:0.6; filter:grayscale(100%); cursor:pointer;";
-                    html += `<div class="achievement-card animate-entry" style="${style} animation-delay: ${i*0.1}s;" onclick="Achievements.showDetails('${b.title}', '${b.desc}', ${b.unlocked})"><div style="width:50px; height:50px; margin:0 auto 1rem; border-radius:50%; background:var(--canvas); display:flex; align-items:center; justify-content:center; color:var(--gold);"><i data-lucide="${b.icon}"></i></div><div class="font-bold text-navy">${b.title}</div><div style="font-size:0.7rem; font-weight:900; text-transform:uppercase; color:${b.unlocked ? '#22c55e' : '#64748b'}; margin-top:0.25rem;">${b.unlocked ? 'Unlocked' : 'Locked'}</div></div>`;
-                });
-                html += `</div>`;
-                container.innerHTML = html;
-            },
-            showDetails: function(title, desc, unlocked) {
-                const modal = document.getElementById('achievement-modal');
-                modal.innerHTML = `<div class="modal-content" style="text-align:center; padding: 2rem;"><h3 class="text-navy font-black" style="font-size: 1.5rem; margin-bottom: 0.5rem;">${title}</h3><div style="margin-bottom: 1rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: ${unlocked ? '#22c55e' : '#64748b'};">${unlocked ? 'Unlocked' : 'Locked'}</div><p class="text-muted">${desc}</p><button class="btn btn-secondary" style="margin-top: 1.5rem;" onclick="document.getElementById('achievement-modal').classList.remove('open')">Close</button></div>`;
-                modal.classList.add('open');
-            }
-        };
-
-        window.Pomodoro = {
-            timeLeft: 25 * 60, timer: null, currentMode: 'focus',
-            render: function(container) {
-                container.innerHTML = `<div class="pomo-container animate-entry"><div class="timer-card"><div class="mode-toggles"><button id="btn-focus" onclick="Pomodoro.setMode('focus')" class="mode-btn active">Focus</button><button id="btn-short" onclick="Pomodoro.setMode('short')" class="mode-btn">Short</button><button id="btn-long" onclick="Pomodoro.setMode('long')" class="mode-btn">Long</button></div><div class="timer-display" id="pomo-display">25:00</div><div class="flex justify-center gap-4"><button onclick="Pomodoro.toggle()" class="control-btn-lg"><i data-lucide="play" id="pomo-icon" style="margin-left:4px;"></i></button><button onclick="Pomodoro.reset()" class="control-btn-sm"><i data-lucide="rotate-ccw"></i></button></div></div></div>`;
-            },
-            setMode: function(mode) {
-                this.currentMode = mode;
-                let mins = mode === 'short' ? 5 : mode === 'long' ? 15 : 25;
-                this.timeLeft = mins * 60;
-                clearInterval(this.timer); this.timer = null;
-                this.update();
-                document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
-                document.getElementById(`btn-${mode}`).classList.add('active');
-                const icon = document.getElementById('pomo-icon');
-                if(icon) icon.setAttribute('data-lucide', 'play');
-                lucide.createIcons();
-            },
-            toggle: function() {
-                if(this.timer) { clearInterval(this.timer); this.timer = null; document.getElementById('pomo-icon').setAttribute('data-lucide', 'play'); } 
-                else { document.getElementById('pomo-icon').setAttribute('data-lucide', 'pause'); this.timer = setInterval(() => { this.timeLeft--; this.update(); if(this.timeLeft <= 0) { clearInterval(this.timer); this.timer = null; alert("Time's Up!"); document.getElementById('pomo-icon').setAttribute('data-lucide', 'play'); lucide.createIcons(); } }, 1000); }
-                lucide.createIcons();
-            },
-            reset: function() { this.setMode(this.currentMode); },
-            update: function() {
-                const m = Math.floor(this.timeLeft / 60).toString().padStart(2,'0');
-                const s = (this.timeLeft % 60).toString().padStart(2,'0');
-                const display = document.getElementById('pomo-display');
-                if(display) display.textContent = `${m}:${s}`;
-            }
-        };
-
-        window.Feedback = {
-            render: function(c) {
-                c.innerHTML = `
-                    <div class="feedback-card animate-entry">
-                        <div class="feedback-header">
-                            <h2 class="text-center font-black" style="font-size:1.5rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
-                                <i data-lucide="scroll-text" class="text-gold"></i> The Council Chambers
-                            </h2>
-                        </div>
-                        <form onsubmit="event.preventDefault(); window.Feedback.submit(this);" style="padding:2rem;">
-                            <div style="margin-bottom:1.5rem; display:flex; gap:1rem;">
-                                <div onclick="window.Feedback.setType('bug')" id="type-bug" class="fb-type-card active" style="flex:1;">
-                                    <i data-lucide="bug" style="margin-bottom:0.5rem; display:inline-block;"></i><br>Report Glitch
-                                </div>
-                                <div onclick="window.Feedback.setType('feature')" id="type-feature" class="fb-type-card" style="flex:1;">
-                                    <i data-lucide="sparkles" style="margin-bottom:0.5rem; display:inline-block;"></i><br>Propose Feature
-                                </div>
-                            </div>
-                            <textarea class="feedback-textarea" rows="4" placeholder="Describe your request..."></textarea>
-                            <button class="btn btn-primary w-full" id="fb-submit-btn">Send Scroll</button>
-                        </form>
-                    </div>`;
-                lucide.createIcons();
-            },
-            setType: function(type) {
-                document.querySelectorAll('.fb-type-card').forEach(el => el.classList.remove('active'));
-                document.getElementById(`type-${type}`).classList.add('active');
-            },
-            submit: function(form) {
-                const btn = document.getElementById('fb-submit-btn');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = `<i data-lucide="loader-2" class="animate-spin"></i> Sending...`;
-                btn.disabled = true;
-                lucide.createIcons();
-                setTimeout(() => {
-                    btn.innerHTML = `<i data-lucide="check"></i> Sent!`;
-                    btn.style.backgroundColor = '#22c55e';
-                    btn.style.boxShadow = 'none';
-                    lucide.createIcons();
-                    setTimeout(() => {
-                        form.reset();
-                        btn.innerHTML = originalText;
-                        btn.style.backgroundColor = '';
-                        btn.style.boxShadow = '';
-                        btn.disabled = false;
-                    }, 2000);
-                }, 1500);
-            }
-        };
-
-        window.Utils = {
-            renderHowTo: function(c) {
-                c.innerHTML = `
-                    <div class="text-center animate-entry" style="max-width:800px; margin:0 auto; padding-bottom: 5rem;">
-                        <h2 class="text-navy font-black" style="font-size:2.5rem; margin-bottom:1.5rem;">Adventurer's Guide</h2>
-                        
-                        <div style="display:grid; gap:2rem; text-align:left;">
-                            <div class="howto-card">
-                                <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
-                                    <div style="background:#dbeafe; color:#1d4ed8; padding:0.75rem; border-radius:0.75rem;"><i data-lucide="map"></i></div>
-                                    <h3 class="text-navy font-bold" style="font-size:1.25rem;">Quest Board</h3>
-                                </div>
-                                <p class="text-muted" style="line-height:1.6;">This is your main hub. Create tasks using the "New Quest" button. Drag tasks to "Done" to complete them and earn XP.</p>
-                            </div>
-
-                            <div class="howto-card">
-                                <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
-                                    <div style="background:#fef3c7; color:#b45309; padding:0.75rem; border-radius:0.75rem;"><i data-lucide="zap"></i></div>
-                                    <h3 class="text-navy font-bold" style="font-size:1.25rem;">XP & Leveling</h3>
-                                </div>
-                                <p class="text-muted" style="line-height:1.6;">Everything you do earns XP. High priority tasks give 500 XP, medium give 250 XP, and low give 100 XP. Level up to show off your productivity prowess!</p>
-                            </div>
-
-                            <div class="howto-card">
-                                <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
-                                    <div style="background:#e0e7ff; color:#4338ca; padding:0.75rem; border-radius:0.75rem;"><i data-lucide="timer"></i></div>
-                                    <h3 class="text-navy font-bold" style="font-size:1.25rem;">Pomodoro Focus</h3>
-                                </div>
-                                <p class="text-muted" style="line-height:1.6;">Use the dedicated timer to work in focused bursts (25m) followed by short breaks (5m). This helps maintain high energy levels.</p>
-                            </div>
-                        </div>
-
-                        <div class="howto-footer">
-                            <div style="width:60px; height:60px; background:var(--navy); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; box-shadow:var(--shadow-lg);">
-                                <i data-lucide="code-2" style="width:30px; height:30px;"></i>
-                            </div>
-                            <h4 class="text-navy font-black" style="font-size:1.2rem; margin-bottom:0.5rem;">Developed by IT Committee</h4>
-                            <p class="text-muted font-bold">Life Makers Minia University</p>
-                            <div class="flex justify-center gap-6 mt-6">
-                                <a href="#" style="color:#1877F2; background:white; padding:0.75rem; border-radius:50%; box-shadow:var(--shadow); display:flex;"><i data-lucide="facebook"></i></a>
-                                <a href="#" style="color:#E4405F; background:white; padding:0.75rem; border-radius:50%; box-shadow:var(--shadow); display:flex;"><i data-lucide="instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>`;
-                lucide.createIcons();
-            }
-        };
-
-        document.addEventListener('DOMContentLoaded', () => App.init());
-    </script>
     <script src="main.js"></script>
-</body>
+  </body>
 </html>
